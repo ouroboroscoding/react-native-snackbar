@@ -21,21 +21,58 @@ expo install @ouroboros/react-native-snackbar
 ## Getting Started
 
 Import Snackbar in your main App file
-
 ```javascript
 import { Snackbar } from '@ouroboros/react-native-snackbar';
 ```
 
 Add it to the app
-
 ```javascript
-export default App() {
-
+export default function App() {
 	return (
 		<View>
+			<Test />
 			<Snackbar />
 		</View>
 	);
 }
 ```
 
+Import addMessage into other components (or in the App)
+
+```javascript
+import { addMessage } from '@ouroboros/react-native-snackbar';
+```
+
+Add messages from other components
+
+```javascript
+export default function Test(props) {
+	return (
+		<View>
+			<TouchableOpacity onPress={() => addMessage('Hello!')}>
+				<Text>Click Me!</Text>
+			</TouchableOpacity>
+		</View>
+	);
+}
+```
+
+### addMessage
+
+The addMessage function can be passed a single string, resulting in the default
+duration with no action, or it can be passed the following structure
+
+```typescript
+{
+    text: string;
+    duration?: number;
+    action?: {
+        text: string;
+        onPress: () => void;
+	}
+}
+```
+
+Duration is milliseconds (1000 = 1 second) before the popup disappears, default is 1000.
+
+Action is an additional touchable opacity, added on the right hand side of the popup, which will call the onPress callback if pressed.
