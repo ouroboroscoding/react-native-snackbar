@@ -28,12 +28,12 @@ import { Snackbar } from '@ouroboros/react-native-snackbar';
 Add it to the app
 ```javascript
 export default function App() {
-	return (
-		<View>
-			<Test />
-			<Snackbar />
-		</View>
-	);
+    return (
+        <View>
+            <Test />
+            <Snackbar />
+        </View>
+    );
 }
 ```
 
@@ -47,13 +47,13 @@ Add messages from other components
 
 ```javascript
 export default function Test(props) {
-	return (
-		<View>
-			<TouchableOpacity onPress={() => addMessage('Hello!')}>
-				<Text>Click Me!</Text>
-			</TouchableOpacity>
-		</View>
-	);
+    return (
+        <View>
+            <TouchableOpacity onPress={() => addMessage('Hello!')}>
+                <Text>Click Me!</Text>
+            </TouchableOpacity>
+        </View>
+    );
 }
 ```
 
@@ -69,7 +69,7 @@ duration with no action, or it can be passed the following structure
     action?: {
         text: string;
         onPress: () => void;
-	}
+    }
 }
 ```
 
