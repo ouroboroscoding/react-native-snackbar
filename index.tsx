@@ -9,7 +9,7 @@
  */
 
 // NPM Imports
-import { afindi } from '@ouroboros/tools';
+import { afindi, random } from '@ouroboros/tools';
 import React from 'react';
 import {
     Dimensions,
@@ -21,7 +21,6 @@ import {
     View,
     ViewStyle
 } from 'react-native';
-import { v4 } from 'uuid';
 
 // Constants
 const DEFAULT_DURATION: number = 1000;
@@ -162,7 +161,12 @@ export class Snackbar extends React.Component<SnackbarProps, SnackbarState> {
         const items: SnackbarMessageState[] = [...this.state.messages];
 
         // Generate a unique ID for the message
-        const id: string = v4();
+        let id: string;
+        let index: number;
+        do {
+            id = random(8, ['0x']);
+            index = afindi(this.state.messages, '_id', id);
+        } while(index > -1);
 
         // Get the timeout duration
         let timeout: number = DEFAULT_DURATION;
