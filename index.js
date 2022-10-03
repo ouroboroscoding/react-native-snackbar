@@ -8,10 +8,9 @@
  * @created 2022-09-21
  */
 // NPM Imports
-import { afindi } from '@ouroboros/tools';
+import { afindi, random } from '@ouroboros/tools';
 import React from 'react';
 import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { v4 } from 'uuid';
 // Constants
 const DEFAULT_DURATION = 1000;
 const MAX_WIDTH = 340;
@@ -102,7 +101,12 @@ export class Snackbar extends React.Component {
         // Copy the current state items
         const items = [...this.state.messages];
         // Generate a unique ID for the message
-        const id = v4();
+        let id;
+        let index;
+        do {
+            id = random(8, ['0x']);
+            index = afindi(this.state.messages, '_id', id);
+        } while (index > -1);
         // Get the timeout duration
         let timeout = DEFAULT_DURATION;
         // If we have a string
